@@ -27,6 +27,11 @@ class _HomePageState extends State<HomePage> {
     });
     Navigator.of(context).pop();
   }
+  // delete task
+  void deleteTask(int index)
+  {
+
+  }
   // craete a new task
   void craeteNewTask()
   {
@@ -56,7 +61,8 @@ class _HomePageState extends State<HomePage> {
           return TodoTile(
             onChanged: (value) => checkBoxChanged(value, index),
             taskCompleted: toDoList[index][1],
-            taskName: toDoList[index][0],
+            taskName: toDoList[index][0]
+            , deleteFunction: (context) => deleteTask(index)
           );
         },
       ),
