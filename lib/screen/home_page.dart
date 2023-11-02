@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tode_app/widgets/dialog_box.dart';
 import 'package:tode_app/widgets/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,14 +19,22 @@ class _HomePageState extends State<HomePage> {
       toDoList[index][1] = !toDoList[index][1];
     });
   }
-
+  final controller = TextEditingController();
+  void saveNewTask() {
+    setState(() {
+      toDoList.add([controller.text , false]);
+      controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
   // craete a new task
   void craeteNewTask()
   {
-     showDialog(context: context, builder: (context)
-     {
-      return const AlertDialog();
-     });
+    showDialog(context: context, builder: (context)
+    {
+    return DialogBox(controller: controller, onCancel: ()=> Navigator.of(context).pop(),
+     onSaved: saveNewTask,);
+    });
   }
 
   @override
