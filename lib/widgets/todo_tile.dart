@@ -18,14 +18,15 @@ class TodoTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Slidable(
         endActionPane: ActionPane(
+          motion: const StretchMotion(),
           children: [
             SlidableAction(
               onPressed: deleteFunction,
               icon: Icons.delete,
               backgroundColor: Colors.red,
+              borderRadius: BorderRadius.circular(12),
             )
           ],
-          motion: const StretchMotion(),
         ),
         child: Container(
           padding: const EdgeInsets.all(20),

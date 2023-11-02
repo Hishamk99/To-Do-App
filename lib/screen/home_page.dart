@@ -30,7 +30,9 @@ class _HomePageState extends State<HomePage> {
   // delete task
   void deleteTask(int index)
   {
-
+     setState(() {
+      toDoList.removeAt(index);
+     });
   }
   // craete a new task
   void craeteNewTask()
