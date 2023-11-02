@@ -10,13 +10,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> toDoList = [
-    ['Make Tutorial', true],
+    ['Make Tutorial', false],
     ['Do Excersize', false],
   ];
-  void CheckBoxChanged(bool? value , int index) {}
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      toDoList[index][1] = !toDoList[index][1];
+    });
+  }
+
+  // craete a new task
+  void craeteNewTask()
+  {
+     showDialog(context: context, builder: (context)
+     {
+      return const AlertDialog();
+     });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: craeteNewTask,
+        child: const Icon(Icons.add),
+      ),
       backgroundColor: Colors.yellow[300],
       appBar: AppBar(
         elevation: 0,
@@ -27,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         itemCount: toDoList.length,
         itemBuilder: (context, index) {
           return TodoTile(
-            onChanged: (value) => CheckBoxChanged(value , index),
+            onChanged: (value) => checkBoxChanged(value, index),
             taskCompleted: toDoList[index][1],
             taskName: toDoList[index][0],
           );
@@ -36,13 +54,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-// TodoTile(
-//             onChanged: (value) {},
-//             taskCompleted: true,
-//             taskName: 'Make Tutorial',
-//           ),
-//           TodoTile(
-//             onChanged: (value) {},
-//             taskCompleted: false,
-//             taskName: 'Do Exersize',
-//           ),
