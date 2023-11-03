@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tode_app/constant.dart';
 import 'screen/home_page.dart';
 
 void main() async {
   await Hive.initFlutter();
+
+  await Hive.openBox(boxName);
   runApp(const ToDoApp());
 }
 
